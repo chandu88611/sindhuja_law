@@ -1,0 +1,24 @@
+/* Global Flaticon styles */
+@font-face {
+  font-family: "Flaticon";
+  /* New – correct path */
+  src: url("/assets/fonts/Flaticon.woff2") format("woff2"),
+    url("/assets/fonts/Flaticon.woff") format("woff");
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before {
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  speak: none;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
