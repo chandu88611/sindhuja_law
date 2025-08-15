@@ -39,9 +39,9 @@ function LAyout({ children }) {
           </div>
         </div>
       )}
-      <a href="https://wa.me/919606825941" className="">
-        <div className="whatsapp blink-animation">
-          <FaWhatsapp size={"40px"} />
+      <a href="https://wa.me/916363862257" className="" style={{position:"fixed",bottom:10,right:10}}>
+        <div className="whatsapp blink-animation" >
+          <FaWhatsapp size={"40px"}  color="green"/>
         </div>
       </a>
     </>

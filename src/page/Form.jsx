@@ -22,29 +22,29 @@ const schemaStep2 = yup.object().shape({
   complaintDescription: yup.string().required('Complaint description is required'),
 });
 function Form() {
-const [step,setStep]=useState(1)
-const [captchaToken, setCaptchaToken] = useState("");
-const [loading, setloading] = useState(false);
+  const [step, setStep] = useState(1)
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [loading, setloading] = useState(false);
 
   const handleCaptchaChange = (token) => {
     setCaptchaToken(token);
   };
 
-const { handleSubmit: handleSubmitStep1, control: controlStep1, formState: { errors: errorsStep1 },getValues } = useForm({
-  resolver: yupResolver(schemaStep1)
-});
-const values=getValues()
-console.log(values)
-const { handleSubmit: handleSubmitStep2, control: controlStep2, formState: { errors: errorsStep2 } } = useForm({
-  resolver: yupResolver(schemaStep2)
-});
+  const { handleSubmit: handleSubmitStep1, control: controlStep1, formState: { errors: errorsStep1 }, getValues } = useForm({
+    resolver: yupResolver(schemaStep1)
+  });
+  const values = getValues()
+  console.log(values)
+  const { handleSubmit: handleSubmitStep2, control: controlStep2, formState: { errors: errorsStep2 } } = useForm({
+    resolver: yupResolver(schemaStep2)
+  });
 
-const onSubmitStep1 = (data) => {
-  
-  setStep(2); 
-};
+  const onSubmitStep1 = (data) => {
 
-const onSubmitStep2 =async (data) => {
+    setStep(2);
+  };
+
+  const onSubmitStep2 = async (data) => {
 
 
     if (!captchaToken) {
@@ -55,7 +55,7 @@ const onSubmitStep2 =async (data) => {
       return;
     }
 
-   
+
     const currentUrl = window?.location?.href;
     let updatedUrl;
 
@@ -86,7 +86,7 @@ const onSubmitStep2 =async (data) => {
       formData.append("domain", "legal");
 
       const res = await axios.post(
-        "https://master.lexbridgelegalservices.com/enquiry-api/v2/store-enq",
+        "https://master.allindialegalcomplaints.com/enquiry-api/v2/store-enq",
         formData,
         {
           headers: {
@@ -140,227 +140,227 @@ const onSubmitStep2 =async (data) => {
 
   return (
     <div className='mt-2'>
-         {/* <form  onSubmit={(e)=>{
+      {/* <form  onSubmit={(e)=>{
             e.preventDefault();
          }}> */}
-              <div >
-                <div >
-                 
-                </div>
-                <form onSubmit={handleSubmitStep1(onSubmitStep1)}>
-        <div className="row g-4">
-          <div className="col-12">
-            <div className="form-group">
-              <h3 className="text-dark">Register Your Complaint</h3>
-            </div>
-            {step === 1 && (
-            <div className='col-12'>
-              <div className="col-12 mt-3">
-                <div className="form-group text-start">
-                  <div className="form-control-wrap">
-                    <Controller
-                      name="name"
-                      control={controlStep1}
-                      render={({ field }) => (
-                        <input
-                          {...field}
-                          className="form-control"
-                          placeholder="Enter your name"
-                        />
-                      )}
-                    />
-                    {errorsStep1.name && <span className="text-danger text-xs">{errorsStep1.name.message}</span>}
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 mt-3">
-                <div className="form-group text-start">
-                  <div className="form-control-wrap">
-                    <Controller
-                      name="email"
-                      control={controlStep1}
-                      render={({ field }) => (
-                        <input
-                          {...field}
-                          className="form-control"
-                          placeholder="Enter email id"
-                        />
-                      )}
-                    />
-                    {errorsStep1.email && <span className="text-danger text-xs">{errorsStep1.email.message}</span>}
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 mt-3">
-                <div className="form-group text-start">
-                  <div className="form-control-wrap">
-                    <Controller
-                      name="phone"
-                      control={controlStep1}
-                      render={({ field }) => (
-                        <input
-                          {...field}
-                          className="form-control"
-                          placeholder="Enter phone number"
-                        />
-                      )}
-                    />
-                    {errorsStep1.phone && <span className="text-danger text-xs">{errorsStep1.phone.message}</span>}
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 mt-3">
-                <div className="form-group text-start">
-                  <div className="form-control-wrap">
-                    <Controller
-                      name="city"
-                      control={controlStep1}
-                      render={({ field }) => (
-                        <input
-                          {...field}
-                          className="form-control"
-                          placeholder="Enter city"
-                        />
-                      )}
-                    />
-                    {errorsStep1.city && <span className="text-danger text-xs">{errorsStep1.city.message}</span>}
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 mt-3">
-                <div className="form-group text-start">
-                  <div className="form-control-wrap">
-                    <Controller
-                      name="state"
-                      control={controlStep1}
-                      render={({ field }) => (
-                        <input
-                          {...field}
-                          className="form-control"
-                          placeholder="Enter state"
-                        />
-                      )}
-                    />
-                    {errorsStep1.state && <span className="text-danger text-xs">{errorsStep1.state.message}</span>}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-              {step==1&&<button
-              className="btn-anim "
-              type="submit"
-              disabled={step === 1 && Object.keys(errorsStep1).length > 0}
-            >
-              { 'Next' }
-            </button>}
-          </div>
-         
+      <div >
+        <div >
+
         </div>
-      </form>
-<form action="" className='row' onSubmit={handleSubmitStep2(onSubmitStep2)}>
-{step==2&&<div className='col-12'>
-                    <div className="col-12 mt-3">
-                  <div className="form-group text-start">
-                  
-                    <div className="form-control-wrap">
-                    <Controller
-                      name="refundAmount"
-                      control={controlStep2}
-                      render={({ field }) => (
-                        <input
-                          {...field}
-                          className="form-control"
-                          placeholder="Refund Amount"
+        <form onSubmit={handleSubmitStep1(onSubmitStep1)}>
+          <div className="row g-4">
+            <div className="col-12">
+              <div className="form-group">
+                <h3 className="text-dark">Register Your Complaint</h3>
+              </div>
+              {step === 1 && (
+                <div className='col-12'>
+                  <div className="col-12 mt-3">
+                    <div className="form-group text-start">
+                      <div className="form-control-wrap">
+                        <Controller
+                          name="name"
+                          control={controlStep1}
+                          render={({ field }) => (
+                            <input
+                              {...field}
+                              className="form-control"
+                              placeholder="Enter your name"
+                            />
+                          )}
                         />
-                      )}
-                    />
-                    {errorsStep2.refundAmount && <span className="text-danger text-xs">{errorsStep2.refundAmount.message}</span>}
+                        {errorsStep1.name && <span className="text-danger text-xs">{errorsStep1.name.message}</span>}
+                      </div>
+                    </div>
                   </div>
-                  
+                  <div className="col-12 mt-3">
+                    <div className="form-group text-start">
+                      <div className="form-control-wrap">
+                        <Controller
+                          name="email"
+                          control={controlStep1}
+                          render={({ field }) => (
+                            <input
+                              {...field}
+                              className="form-control"
+                              placeholder="Enter email id"
+                            />
+                          )}
+                        />
+                        {errorsStep1.email && <span className="text-danger text-xs">{errorsStep1.email.message}</span>}
+                      </div>
+                    </div>
                   </div>
+                  <div className="col-12 mt-3">
+                    <div className="form-group text-start">
+                      <div className="form-control-wrap">
+                        <Controller
+                          name="phone"
+                          control={controlStep1}
+                          render={({ field }) => (
+                            <input
+                              {...field}
+                              className="form-control"
+                              placeholder="Enter phone number"
+                            />
+                          )}
+                        />
+                        {errorsStep1.phone && <span className="text-danger text-xs">{errorsStep1.phone.message}</span>}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12 mt-3">
+                    <div className="form-group text-start">
+                      <div className="form-control-wrap">
+                        <Controller
+                          name="city"
+                          control={controlStep1}
+                          render={({ field }) => (
+                            <input
+                              {...field}
+                              className="form-control"
+                              placeholder="Enter city"
+                            />
+                          )}
+                        />
+                        {errorsStep1.city && <span className="text-danger text-xs">{errorsStep1.city.message}</span>}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12 mt-3">
+                    <div className="form-group text-start">
+                      <div className="form-control-wrap">
+                        <Controller
+                          name="state"
+                          control={controlStep1}
+                          render={({ field }) => (
+                            <input
+                              {...field}
+                              className="form-control"
+                              placeholder="Enter state"
+                            />
+                          )}
+                        />
+                        {errorsStep1.state && <span className="text-danger text-xs">{errorsStep1.state.message}</span>}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {step == 1 && <button
+                className="btn-anim "
+                type="submit"
+                disabled={step === 1 && Object.keys(errorsStep1).length > 0}
+              >
+                {'Next'}
+              </button>}
+            </div>
+
+          </div>
+        </form>
+        <form action="" className='row' onSubmit={handleSubmitStep2(onSubmitStep2)}>
+          {step == 2 && <div className='col-12'>
+            <div className="col-12 mt-3">
+              <div className="form-group text-start">
+
+                <div className="form-control-wrap">
+                  <Controller
+                    name="refundAmount"
+                    control={controlStep2}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        className="form-control"
+                        placeholder="Refund Amount"
+                      />
+                    )}
+                  />
+                  {errorsStep2.refundAmount && <span className="text-danger text-xs">{errorsStep2.refundAmount.message}</span>}
                 </div>
 
-                <div className="col-12 mt-3">
-                  <div className="form-group text-start">
-                  
-                    <div className="form-control-wrap">
-                    <Controller
-                      name="complaintAgainst"
-                      control={controlStep2}
-                      render={({ field }) => (
-                        <input
-                          {...field}
-                          className="form-control"
-                          placeholder="Complaint Against"
-                        />
-                      )}
-                    />
-                    {errorsStep2.complaintAgainst && <span className="text-danger text-xs">{errorsStep2.complaintAgainst.message}</span>}
-                  </div>
-                  
-                  </div>
+              </div>
+            </div>
+
+            <div className="col-12 mt-3">
+              <div className="form-group text-start">
+
+                <div className="form-control-wrap">
+                  <Controller
+                    name="complaintAgainst"
+                    control={controlStep2}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        className="form-control"
+                        placeholder="Complaint Against"
+                      />
+                    )}
+                  />
+                  {errorsStep2.complaintAgainst && <span className="text-danger text-xs">{errorsStep2.complaintAgainst.message}</span>}
                 </div>
-                <div className="col-12 mt-3">
-                  <div className="form-group text-start">
-                  
-                    <div className="form-control-wrap">
-                    <Controller
-                      name="complaintDescription"
-                      control={controlStep2}
-                      render={({ field }) => (
-                        <textarea
-                          {...field}
-                          className="form-control"
-                          placeholder="Complaint Description"
-                        />
-                      )}
-                    />
-                    {errorsStep2.complaintDescription && <span className="text-danger text-xs">{errorsStep2.complaintDescription.message}</span>}
-                  </div>
-                  
-                  </div>
+
+              </div>
+            </div>
+            <div className="col-12 mt-3">
+              <div className="form-group text-start">
+
+                <div className="form-control-wrap">
+                  <Controller
+                    name="complaintDescription"
+                    control={controlStep2}
+                    render={({ field }) => (
+                      <textarea
+                        {...field}
+                        className="form-control"
+                        placeholder="Complaint Description"
+                      />
+                    )}
+                  />
+                  {errorsStep2.complaintDescription && <span className="text-danger text-xs">{errorsStep2.complaintDescription.message}</span>}
                 </div>
-                <ReCAPTCHA
-                                sitekey="6LeooeIpAAAAAPF4iITH24YIt0b97OPxxFgScCWF"
-                                onChange={handleCaptchaChange}
-                                style={{
-                                  transform: "scale(0.60)",
-                                  WebkitTransform: "scale(0.60)",
-                                  transformOrigin: "0 0",
-                                  WebkitTransformOrigin: "0 0",
-                                  marginLeft:'25%'
-                                }}
-                                className='col-12"'
-                              />
-                </div>}
+
+              </div>
+            </div>
+            <ReCAPTCHA
+              sitekey="6LeooeIpAAAAAPF4iITH24YIt0b97OPxxFgScCWF"
+              onChange={handleCaptchaChange}
+              style={{
+                transform: "scale(0.60)",
+                WebkitTransform: "scale(0.60)",
+                transformOrigin: "0 0",
+                WebkitTransformOrigin: "0 0",
+                marginLeft: '25%'
+              }}
+              className='col-12"'
+            />
+          </div>}
           <div className="col-12 text-center">
             {step === 2 && (
               <button className="btn btn-primary-outline" type="button" onClick={() => setStep(1)}>
                 Back
               </button>
             )}
-            {step==2&&<button
+            {step == 2 && <button
               className="btn-anim"
               type="submit"
               disabled={step === 1 && Object.keys(errorsStep1).length > 0}
             >
-            {loading ? (
-                                  <CircularProgress
-                                    size={21}
-                                    style={{ color: "white" }}
-                                  />
-                                ) : (
-                                  " Submit"
-                                )}
+              {loading ? (
+                <CircularProgress
+                  size={21}
+                  style={{ color: "white" }}
+                />
+              ) : (
+                " Submit"
+              )}
             </button>}
           </div>
-</form>
-             
-               
-                
-              </div>
-            {/* </form> */}
+        </form>
+
+
+
+      </div>
+      {/* </form> */}
 
     </div>
   )

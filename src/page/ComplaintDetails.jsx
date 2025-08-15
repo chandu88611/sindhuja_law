@@ -296,7 +296,7 @@ function ComplaintDetails() {
         <div className="text-white p-5 flex flex-col items-center justify-center text-center witr_section_title_inner">
           <h3 className="text-white">{complaint.title}</h3>
           <p className="mb-4">
-            Welcome to lexbridge legal services, your trusted legal partner for
+            Welcome to allindialegalcomplaints, your trusted legal partner for
             all your legal needs. Our team of experienced advocates is dedicated
             to providing expert legal guidance and representation tailored to
           </p>

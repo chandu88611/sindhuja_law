@@ -1388,6 +1388,13 @@ a.withput-active:hover {
   }
 }
 
+@media (max-width: 600px) {
+ 
+  .about_service_inner {
+    display:block !important;
+  }
+}
+
 .lorw_brand_area {
   background: #002648;
   padding: 55px 0 70px;
@@ -3727,7 +3734,6 @@ blockquote {
 .lorw_btn:hover {
   background: #188805;
   border-color: #188805;
-  2e: ;
   color: #fff;
 }
 /* end sidebar css */
@@ -3979,7 +3985,7 @@ mc4wp-form-fields p,
 }
 /* slick prev slick next css */
 /*======== slick ========*/
-.slick-prev,
+/* .slick-prev,
 .slick-next {
   font-size: 0;
   position: absolute;
@@ -4001,7 +4007,7 @@ mc4wp-form-fields p,
   transition: 0.5s;
   border: 0px solid #17161a;
   background: #188805;
-}
+} */
 .slick-prev {
   left: -65px;
 }
@@ -4733,7 +4739,7 @@ button:focus {
 }
 .witr_text_widget .witr_text_widget_inner h1,
 .witr_text_widget .witr_text_widget_inner h2,
-.witr_text_widget . p {
+.witr_text_widget .p {
   margin-left: auto !important;
   margin-right: auto !important;
 }

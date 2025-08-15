@@ -73,7 +73,7 @@ function App() {
             path="/pricing"
             element={
               <LAyout>
-                {" "}
+              
                 <Pricing setShow={setShow} />
               </LAyout>
             }

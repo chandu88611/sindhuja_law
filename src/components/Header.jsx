@@ -1,225 +1,182 @@
-import React from "react";
+// Responsive MUI Header with Drawer and Submenus
+import React, { useState } from "react";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Button,
+  Menu,
+  MenuItem,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Box,
+  Divider,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 
-function Header({ setShow }) {
+const complaintSubItems = [
+  { label: "Cyber Crime", path: "/complaints/cyber-crime" },
+  { label: "Child Pornography", path: "/complaints/child-pornography" },
+  { label: "Women Abuse", path: "/complaints/women-abuse" },
+  { label: "Consumer Complaints", path: "/complaints/consumer-complaints" },
+  { label: "Insurance Claim", path: "/complaints/insurance-claim" },
+  { label: "Check Bounce", path: "/complaints/check-bounce" },
+  { label: "Online Blackmail", path: "/complaints/online-blackmail" },
+  { label: "Property Rentals", path: "/complaints/property-rentals" },
+  { label: "Family Issues", path: "/complaints/family-issues" },
+];
+
+const Header = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const toggleDrawer = (open) => () => {
+    setDrawerOpen(open);
+  };
+
   return (
-    <>
-      <div className="em40_header_area_main">
-        <div className="lorw-header-top">
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12 col-lg-8 col-xl-8 col-md-12 col-sm-12">
-                <div className="top-address text-left">
-                  <p>
-                    <span>
-                      <i className="icofont-home" /> 2nd Floor New World.
-                    </span>
-                    <a href="tel:+998556778345">
-                      <i className="icofont-ui-call" /> +998556778345
-                    </a>
-                    <a href="mailto:demo@example.com">
-                      <i className="icofont-envelope" /> demo@example.com
-                    </a>
-                  </p>
-                </div>
-              </div>
-              <div className="col-xs-12 col-lg-4 col-xl-4 col-md-12 col-sm-12">
-                <div className="top-right-menu">
-                  <ul className="social-icons text-right text_m_center">
-                    <li>
-                      <a href="#">
-                        <i className="icofont-facebook" />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i className="icofont-twitter" />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i className="icofont-instagram" />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* END HEADER TOP AREA */}
-        <div className="lorw-main-menu one_page hidden-xs hidden-sm witr_h_h10">
-          <div className="lorw_nav_area scroll_fixed postfix">
-            <div className="container">
-              <div className="row logo-left">
-                <div className="col-md-3 col-sm-3 col-xs-4">
-                  <div className="logo">
-                    <a
-                      className="main_sticky_main_l"
-                      href="index-2.html"
-                      title="lorw"
-                    >
-                      <img src="/assets/images/logo1.png" alt="lorw" />
-                    </a>
-                    <a
-                      className="main_sticky_l"
-                      href="index-2.html"
-                      title="lorw"
-                    >
-                      <img src="/assets/images/logo2.png" alt="lorw" />
-                    </a>
-                  </div>
-                </div>
-                {/* MAIN MENU */}
-                <div className="col-md-9 col-sm-9 col-xs-8">
-                  <div className="tx_mmenu_together">
-                    <nav className="lorw_menu">
-                      <ul className="sub-menu">
-                        <li>
-                          <a href="/">Home</a>
-                        </li>
-                        <li>
-                          <a href="/about">About</a>
-                        </li>
-                        <li className="menu-item-has-children">
-                          <a href="#">Complaint List</a>
-                          <ul className="sub-menu">
-                            <li>
-                              <Link to="/complaints/cyber-crime">
-                                Cyber Crime
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/complaints/child-pornography">
-                                Child Pornography
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/complaints/women-abuse">
-                                Women Abuse
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/complaints/consumer-complaints">
-                                Consumer Complaints
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/complaints/insurance-claim">
-                                Insurance Claim
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/complaints/check-bounce">
-                                Check Bounce
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/complaints/online-blackmail">
-                                Online Blackmail
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/complaints/property-rentals">
-                                Property Rentals
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/complaints/family-issues">
-                                Family Issues
-                              </Link>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <a href="/pricing">Pricing</a>
-                        </li>
-                        <li>
-                          <a href="/contact">Contact</a>
-                        </li>
-                      </ul>
-                    </nav>
-                    <div className="donate-btn-header">
-                      <a className="dtbtn" href="#">
-                        Request A Quote
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* MOBILE MENU Logo AREA */}
-      <div className="mobile_logo_area hidden-md hidden-lg">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="mobile_menu_logo text-center">
-                <a href="index-2.html" title="lorw">
-                  <img src="/assets/images/logo1.png" alt="lorw" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* MOBILE MENU AREA */}
-      <div className="  mbm hidden-md hidden-lg header_area main-menu-area">
-        <div className="menu_area mobile-menu">
-          <nav className="lorw_menu">
-            <ul className="sub-menu">
-              <li>
-                <a href="index-2.html">Home</a>
-              </li>
-              <li>
-                <a href="about.html">About</a>
-              </li>
-              <li className="menu-item-has-children">
-                <a href="#">Complaint List</a>
-                <ul className="sub-menu">
-                  <li>
-                    <a href="#">Cyber Crime</a>
-                  </li>
-                  <li>
-                    <a href="#">Child Pornography</a>
-                  </li>
-                  <li>
-                    <a href="#">Woman Abuse</a>
-                  </li>
-                  <li>
-                    <a href="#">Consumer Complaints</a>
-                  </li>
-                  <li>
-                    <a href="#">Insurance Claim</a>
-                  </li>
-                  <li>
-                    <a href="#">Check Bounce</a>
-                  </li>
-                  <li>
-                    <a href="#">Online Blackmail</a>
-                  </li>
-                  <li>
-                    <a href="#">Property Rentals</a>
-                  </li>
-                  <li>
-                    <a href="#">Family Issues</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="pricing.html">Pricing</a>
-              </li>
-              <li>
-                <a href="contact.html">Contact</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </>
+    <AppBar position="static" color="transparent" elevation={0}>
+      <Toolbar sx={{ justifyContent: "space-between" }}>
+        {/* Logo & Title */}
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <img
+            src="/assets/images/logo1.png"
+            alt="Logo"
+            style={{ height: 40, marginRight: 10 }}
+          />
+      
+        </Box>
+
+        {/* Desktop Navigation */}
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2, alignItems: "center" }}>
+          <Button component={Link} to="/" color="inherit">
+            Home
+          </Button>
+          <Button component={Link} to="/about" color="inherit">
+            About
+          </Button>
+          <Button
+            color="inherit"
+            endIcon={<ArrowDropDownIcon />}
+            onClick={handleMenuOpen}
+          >
+            Complaint List
+          </Button>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            {complaintSubItems.map((item) => (
+              <MenuItem
+                key={item.label}
+                component={Link}
+                to={item.path}
+                onClick={handleMenuClose}
+              >
+                {item.label}
+              </MenuItem>
+            ))}
+          </Menu>
+          <Button component={Link} to="/pricing" color="inherit">
+            Pricing
+          </Button>
+          <Button component={Link} to="/contact" color="inherit">
+            Contact
+          </Button>
+          <Button
+            variant="contained"
+            component={Link}
+            to="/request-quote"
+            sx={{ bgcolor: "green", color: "white" }}
+          >
+            Request A Quote
+          </Button>
+        </Box>
+
+        {/* Mobile Menu Button */}
+        <IconButton
+          edge="end"
+          color="inherit"
+          onClick={toggleDrawer(true)}
+          sx={{ display: { xs: "block", md: "none" } }}
+        >
+          <MenuIcon />
+        </IconButton>
+      </Toolbar>
+
+      {/* Mobile Drawer */}
+      <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+        <Box sx={{ width: 280, padding: 2 }} role="presentation">
+          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+            <Typography variant="h6">Menu</Typography>
+            <IconButton onClick={toggleDrawer(false)}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          <Divider />
+          <List>
+            <ListItem disablePadding>
+              <ListItemButton component={Link} to="/">
+                <ListItemText primary="Home" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component={Link} to="/about">
+                <ListItemText primary="About" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Complaint List" />
+            </ListItem>
+            {complaintSubItems.map((item) => (
+              <ListItem key={item.label} disablePadding sx={{ pl: 3 }}>
+                <ListItemButton component={Link} to={item.path} onClick={toggleDrawer(false)}>
+                  <ListItemText primary={item.label} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+            <ListItem disablePadding>
+              <ListItemButton component={Link} to="/pricing">
+                <ListItemText primary="Pricing" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component={Link} to="/contact">
+                <ListItemText primary="Contact" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <Button
+                variant="contained"
+                fullWidth
+                component={Link}
+                to="/request-quote"
+                sx={{ bgcolor: "green", color: "white", mt: 2 }}
+              >
+                Request A Quote
+              </Button>
+            </ListItem>
+          </List>
+        </Box>
+      </Drawer>
+    </AppBar>
   );
-}
+};
 
 export default Header;
